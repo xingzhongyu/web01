@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo06.mapper.StudentMapper">
+<select id="queryForList" resultType="Student">
+    select * from students
+</select>
+    <select id="selectByUsername" resultType="Student">
+        select * from students where studentname=#{name}
+    </select>
+    <select id="selectByUsernameAndPassword" resultType="Student">
+        select * from students where studentname=#{name} and studentpassword=#{password}
+    </select>
+    <select id="selectByUserId" resultType="Student">
+        select  * from students where idstudents=#{id}
+    </select>
+    <select id="getAchieves" resultType="Achieve">
+        select b.name as achieve,b.idachieves from students a left join achieves b on b.idstudents=a.idstudents where a.idstudents=#{id}
+    </select>
+    <select id="getSubjects" resultType="Subject">
+        select c.name as
+         subject,c.idsubjects from students a left join sub_stu b on a.idstudents=b.stu_id
+         left join subjects c on b.sub_id= c.idsubjects where a.idstudents=#{id}
+    </select>
+    <insert id="setAchieve">
+        insert into achieves (name,idstudents) values (#{name},#{id})
+    </insert>
+    <insert id="setSubject">
+        insert into sub_stu (sub_id,stu_id) values(#{subId},#{stuId})
+    </insert>
+    <update id="updateByUserId">
+        update students
+        <set>
+            <if test="studentname != null">studentname=#{studentname},</if>
+            <if test="studentpassword != null">studentpassword=#{studentpassword},</if>
+            <if test="chinese !=null">chinese=#{chinese},</if>
+            <if test="math !=null">math=#{math},</if>
+            <if test="english !=null">english=#{english}</if>
+        </set>
+        where idstudents=#{idstudents}
+    </update>
+    <delete id="deleteAchieve">
+        delete from achieves where idachieves=#{idAchieves}
+    </delete>
+    <delete id="deleteSubject">
+        delete from sub_stu where sub_id=#{subId} and stu_id=#{stuId}
+    </delete>
+ </mapper>
