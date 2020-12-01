@@ -3,12 +3,10 @@ package com.example.demo06.bean;
 import java.util.List;
 
 public class Student {
-    String math;
-    String english;
+
     Integer idstudents;
     String studentname;
     String studentpassword;
-    String chinese;
     String xueHao;
     List<Achieve> achieves;
     List<Subject> subjects;
@@ -69,7 +67,7 @@ public class Student {
                 ", studentname='" + studentname + '\'' +
                 ", studentpassword='" + studentpassword + '\'' +
                 ", chinese='" + chinese + '\'' +
-                ", math='" + math + '\'' +
+                ", math=？？'" + math + '\'' +
                 ", english='" + english + '\'' +
                 ", xueHao='" + xueHao + '\'' +
                 ", achieves=" + achieves +
