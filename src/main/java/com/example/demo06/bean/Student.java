@@ -1,22 +1,17 @@
 package com.example.demo06.bean;
 
-
 import java.util.List;
 
 public class Student {
+    String math;
+    String english;
     Integer idstudents;
     String studentname;
     String studentpassword;
     String chinese;
-    String  math;
-    String english;
     String xueHao;
     List<Achieve> achieves;
     List<Subject> subjects;
-
-
-
-
 
     public String getChinese() {
         return chinese;
