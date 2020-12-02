@@ -20,7 +20,7 @@
     </select>
     <select id="getSubjects" resultType="Subject">
         select c.name as
-         subject,c.idsubjects from students a left join sub_stu b on a.idstudents=b.stu_id
+         subject,b.grades as grades,c.idsubjects,b.idsub_stu as idsubstu from students a left join sub_stu b on a.idstudents=b.stu_id
          left join subjects c on b.sub_id= c.idsubjects where a.idstudents=#{id}
     </select>
     <insert id="setAchieve">
@@ -29,16 +29,23 @@
     <insert id="setSubject">
         insert into sub_stu (sub_id,stu_id) values(#{subId},#{stuId})
     </insert>
+    <insert id="register">
+        insert into students (studentname,studentpassword,xuehao) values (#{studentname},#{studentpassword},#{xueHao})
+    </insert>
     <update id="updateByUserId">
         update students
         <set>
             <if test="studentname != null">studentname=#{studentname},</if>
             <if test="studentpassword != null">studentpassword=#{studentpassword},</if>
-            <if test="chinese !=null">chinese=#{chinese},</if>
-            <if test="math !=null">math=#{math},</if>
-            <if test="english !=null">english=#{english}</if>
+            <if test="choosen != null">choosen=#{choosen}</if>
         </set>
         where idstudents=#{idstudents}
+    </update>
+    <update id="changeGrade">
+        update `sub_stu` set grades = #{grades} where idsub_stu=#{idsubstu}
+    </update>
+    <update id="choosen">
+        update students set choosen  = 1 where idstudents =#{id}
     </update>
     <delete id="deleteAchieve">
         delete from achieves where idachieves=#{idAchieves}

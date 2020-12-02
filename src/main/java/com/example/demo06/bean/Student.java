@@ -10,29 +10,27 @@ public class Student {
     String xueHao;
     List<Achieve> achieves;
     List<Subject> subjects;
+    Integer choosen;
 
-    public String getChinese() {
-        return chinese;
+    @Override
+    public String toString() {
+        return "Student{" +
+                "idstudents=" + idstudents +
+                ", studentname='" + studentname + '\'' +
+                ", studentpassword='" + studentpassword + '\'' +
+                ", xueHao='" + xueHao + '\'' +
+                ", achieves=" + achieves +
+                ", subjects=" + subjects +
+                ", choosen=" + choosen +
+                '}';
     }
 
-    public void setChinese(String chinese) {
-        this.chinese = chinese;
+    public Integer getChoosen() {
+        return choosen;
     }
 
-    public String getMath() {
-        return math;
-    }
-
-    public void setMath(String math) {
-        this.math = math;
-    }
-
-    public String getEnglish() {
-        return english;
-    }
-
-    public void setEnglish(String english) {
-        this.english = english;
+    public void setChoosen(Integer choosen) {
+        this.choosen = choosen;
     }
 
     public String getXueHao() {
@@ -60,20 +58,7 @@ public class Student {
     }
 
 
-    @Override
-    public String toString() {
-        return "Student{" +
-                "idstudents=" + idstudents +
-                ", studentname='" + studentname + '\'' +
-                ", studentpassword='" + studentpassword + '\'' +
-                ", chinese='" + chinese + '\'' +
-                ", math=？？'" + math + '\'' +
-                ", english='" + english + '\'' +
-                ", xueHao='" + xueHao + '\'' +
-                ", achieves=" + achieves +
-                ", subjects=" + subjects +
-                '}';
-    }
+
 
     public Integer getIdstudents() {
         return idstudents;

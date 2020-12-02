@@ -17,11 +17,24 @@ public class StudentController {
     StudentMapper studentMapper;
     @GetMapping("/studentsList")
     public  List<Student> list(){
-        return  studentMapper.queryForList();
+        List<Student> students=studentMapper.queryForList();
+        for (Student student:
+             students) {
+            if (student.getChoosen()==1) {
+                List<Subject> subjects = studentMapper.getSubjects(student.getIdstudents());
+                student.setSubjects(subjects);
+            }
+        }
+        return  students;
     }
     @GetMapping("/students")
     public Student getStudent(@PathParam("username")String username){
         return studentMapper.selectByUsername(username);
+    }
+    @PostMapping("/register")
+    public RespBean register(@RequestBody Student student){
+        Integer num=studentMapper.register(student);
+        return new RespBean("success",num+"");
     }
     @PostMapping("/login")
     public RespBean login(@RequestParam("username") String username, @RequestParam("password") String password){
@@ -48,6 +61,10 @@ public class StudentController {
     public List<Subject> subjects(@PathParam("id") Integer id){
         return studentMapper.getSubjects(id);
     }
+    @PutMapping("/subjects")
+    public RespBean setGrade(@RequestParam("grades") Integer grades,@RequestParam("idsubstu") Integer idsubstu){
+        return new RespBean("success",studentMapper.changeGrade(grades, idsubstu)+"");
+    }
     @PostMapping("/achieves")
     public  RespBean setAchieve(@RequestParam("name") String name,@RequestParam("id") Integer id){
         Integer num=studentMapper.setAchieve(name,id);
@@ -60,7 +77,14 @@ public class StudentController {
     }
     @PutMapping("/students")
     public RespBean updateByUserId(@RequestBody Student student){
-            Integer num=studentMapper.updateByUserId(student);
+            List<Subject> subjects=student.getSubjects();
+            int num=0;
+            if (subjects!=null){
+                for (Subject subject:subjects){
+                    num+=studentMapper.changeGrade(subject.getGrades(),subject.getIdsubstu());
+                }
+            }
+             num=studentMapper.updateByUserId(student);
             return new RespBean("success",num+"");
     }
     @DeleteMapping("/achieves")

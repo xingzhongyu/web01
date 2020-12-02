@@ -22,4 +22,7 @@ public interface StudentMapper {
     int updateByUserId(Student student);
     int deleteAchieve(Integer idAchieves);
     int deleteSubject(Integer subId,Integer stuId);
+    int changeGrade(Integer grades,Integer idsubstu);
+    int register(Student student);
+    int choosen(Integer id);
 }
