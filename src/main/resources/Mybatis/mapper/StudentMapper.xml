@@ -30,14 +30,15 @@
         insert into sub_stu (sub_id,stu_id) values(#{subId},#{stuId})
     </insert>
     <insert id="register">
-        insert into students (studentname,studentpassword,xuehao) values (#{studentname},#{studentpassword},#{xueHao})
+        insert into students (studentname,studentpassword,xuehao) values (#{studentname},#{studentpassword},#{xuehao})
     </insert>
     <update id="updateByUserId">
         update students
         <set>
             <if test="studentname != null">studentname=#{studentname},</if>
             <if test="studentpassword != null">studentpassword=#{studentpassword},</if>
-            <if test="choosen != null">choosen=#{choosen}</if>
+            <if test="choosen != null">choosen=#{choosen},</if>
+            <if test="xuehao!=null">xuehao=#{xuehao}</if>
         </set>
         where idstudents=#{idstudents}
     </update>

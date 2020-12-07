@@ -7,22 +7,17 @@ public class Student {
     Integer idstudents;
     String studentname;
     String studentpassword;
-    String xueHao;
+    String xuehao;
     List<Achieve> achieves;
     List<Subject> subjects;
     Integer choosen;
 
-    @Override
-    public String toString() {
-        return "Student{" +
-                "idstudents=" + idstudents +
-                ", studentname='" + studentname + '\'' +
-                ", studentpassword='" + studentpassword + '\'' +
-                ", xueHao='" + xueHao + '\'' +
-                ", achieves=" + achieves +
-                ", subjects=" + subjects +
-                ", choosen=" + choosen +
-                '}';
+    public String getXuehao() {
+        return xuehao;
+    }
+
+    public void setXuehao(String xuehao) {
+        this.xuehao = xuehao;
     }
 
     public Integer getChoosen() {
@@ -33,13 +28,6 @@ public class Student {
         this.choosen = choosen;
     }
 
-    public String getXueHao() {
-        return xueHao;
-    }
-
-    public void setXueHao(String xueHao) {
-        this.xueHao = xueHao;
-    }
 
     public List<Achieve> getAchieves() {
         return achieves;
